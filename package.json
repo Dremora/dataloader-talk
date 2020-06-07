@@ -7,10 +7,19 @@
   "scripts": {
     "db:start": "docker-compose up postgres",
     "db:migrate": "knex migrate:latest --esm",
-    "db:seeds": "knex seed:run --esm"
+    "db:seeds": "knex seed:run --esm",
+    "start": "node .",
+    "dev": "DEBUG=knex:query nodemon"
   },
   "dependencies": {
+    "apollo-server": "^2.14.2",
+    "graphql": "^15.0.0",
     "knex": "^0.21.1",
-    "pg": "^8.2.1"
+    "pg": "^8.2.1",
+    "sql-tag": "^1.0.1",
+    "sql-template-strings": "^2.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
