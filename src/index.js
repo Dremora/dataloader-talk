@@ -1,11 +1,12 @@
 const { ApolloServer } = require("apollo-server");
 
 const { resolvers: resolversNaive } = require("./resolvers-naive");
+const { resolvers: resolversStandalone } = require("./resolvers-standalone");
 const { typeDefs } = require("./schema");
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers: resolversNaive,
+  resolvers: resolversStandalone,
   tracing: true,
 });
 
