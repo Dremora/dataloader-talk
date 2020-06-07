@@ -6,7 +6,7 @@ async function fetchArtistsByIDs(artistIDs) {
     sql`select * from artists where id = ANY(${artistIDs})`
   );
 
-  return toMap(artists, (a) => a.id);
+  return toMap(artists, artistIDs, (a) => a.id);
 }
 
 exports.fetchArtistsByIDs = fetchArtistsByIDs;
@@ -16,7 +16,7 @@ async function fetchTracksByAlumIDs(albumIDs) {
     sql`select * from tracks where album_id = ANY(${albumIDs}) ORDER BY index`
   );
 
-  return groupBy(tracks, (t) => t.album_id);
+  return groupBy(tracks, albumIDs, (t) => t.album_id);
 }
 
 exports.fetchTracksByAlumIDs = fetchTracksByAlumIDs;
@@ -28,14 +28,14 @@ exports.resolvers = {
 
       const artistIDs = albums.map(({ artist_id }) => artist_id);
       const artistsById = await fetchArtistsByIDs(artistIDs);
-      albums.forEach((album) => {
-        album.artist = artistsById.get(album.artist_id);
+      albums.forEach((album, index) => {
+        album.artist = artistsById[index];
       });
 
       const albumIDs = albums.map(({ id }) => id);
       const tracksByAlbumId = await fetchTracksByAlumIDs(albumIDs);
-      albums.forEach((album) => {
-        album.tracks = tracksByAlbumId.get(album.id) || [];
+      albums.forEach((album, index) => {
+        album.tracks = tracksByAlbumId[index];
       });
 
       return albums;

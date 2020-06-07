@@ -1,12 +1,10 @@
-const id = (x) => x;
-
-module.exports.toMap = (list, getKey, valueFn = id) => {
+module.exports.toMap = (list, keys, getKey) => {
   const map = new Map();
-  list.forEach((value) => map.set(getKey(value), valueFn(value)));
-  return map;
+  list.forEach((value) => map.set(getKey(value), value));
+  return keys.map((key) => map.get(key));
 };
 
-module.exports.groupBy = (list, getKey) => {
+module.exports.groupBy = (list, keys, getKey) => {
   const map = new Map();
   list.forEach((item) => {
     const key = getKey(item);
@@ -17,7 +15,8 @@ module.exports.groupBy = (list, getKey) => {
       map.set(key, [item]);
     }
   });
-  return map;
+
+  return keys.map((key) => map.get(key) || []);
 };
 
 module.exports.onNextTick = (fn) => setTimeout(fn, 0);

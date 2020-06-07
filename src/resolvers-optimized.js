@@ -21,8 +21,9 @@ const Batch = class {
         })
       );
 
+    const index = this.ids.length;
     this.ids.push(id);
-    return this.promise;
+    return this.promise.then((values) => values[index]);
   }
 };
 
@@ -41,13 +42,13 @@ exports.resolvers = {
 
   Album: {
     artist: async (album, _, { artistsByIDsBatch }) => {
-      const artists = await artistsByIDsBatch.load(album.artist_id);
-      return artists.get(album.artist_id);
+      const artist = await artistsByIDsBatch.load(album.artist_id);
+      return artist;
     },
 
     tracks: async (album, _, { tracksByAlumIDsBatch }) => {
       const tracks = await tracksByAlumIDsBatch.load(album.id);
-      return tracks.get(album.id);
+      return tracks;
     },
   },
 };
