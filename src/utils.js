@@ -19,3 +19,5 @@ module.exports.groupBy = (list, getKey) => {
   });
   return map;
 };
+
+module.exports.onNextTick = (fn) => setTimeout(fn, 0);
