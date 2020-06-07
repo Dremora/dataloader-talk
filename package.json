@@ -1,0 +1,16 @@
+{
+  "name": "dataloader-talk",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "Kirill Korolyov",
+  "license": "MIT",
+  "scripts": {
+    "db:start": "docker-compose up postgres",
+    "db:migrate": "knex migrate:latest --esm",
+    "db:seeds": "knex seed:run --esm"
+  },
+  "dependencies": {
+    "knex": "^0.21.1",
+    "pg": "^8.2.1"
+  }
+}
