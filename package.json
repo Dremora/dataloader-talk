@@ -9,7 +9,10 @@
     "db:migrate": "knex migrate:latest --esm",
     "db:seeds": "knex seed:run --esm",
     "start": "node .",
-    "dev": "DEBUG=knex:query nodemon"
+    "dev": "DEBUG=knex:query nodemon",
+    "dev:naive": "RESOLVERS=NAIVE DEBUG=knex:query nodemon",
+    "dev:standalone": "RESOLVERS=STANDALONE DEBUG=knex:query nodemon",
+    "dev:optimized": "RESOLVERS=OPTIMIZED DEBUG=knex:query nodemon"
   },
   "dependencies": {
     "apollo-server": "^2.14.2",

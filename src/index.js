@@ -8,9 +8,16 @@ const {
 } = require("./resolvers-optimized");
 const { typeDefs } = require("./schema");
 
+const resolvers =
+  process.env.RESOLVERS === "NAIVE"
+    ? resolversNaive
+    : process.env.RESOLVERS === "STANDALONE"
+    ? resolversStandalone
+    : resolversOptimized;
+
 const server = new ApolloServer({
   typeDefs,
-  resolvers: resolversOptimized,
+  resolvers,
   context,
   tracing: true,
 });
