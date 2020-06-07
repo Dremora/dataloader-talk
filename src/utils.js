@@ -1,10 +1,10 @@
-module.exports.toMap = (list, keys, getKey) => {
+module.exports.orderByKeys = (list, keys, getKey) => {
   const map = new Map();
   list.forEach((value) => map.set(getKey(value), value));
   return keys.map((key) => map.get(key));
 };
 
-module.exports.groupBy = (list, keys, getKey) => {
+module.exports.orderAndGroupByKeys = (list, keys, getKey) => {
   const map = new Map();
   list.forEach((item) => {
     const key = getKey(item);

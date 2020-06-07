@@ -1,12 +1,12 @@
 const { query, sql } = require("./database");
-const { toMap, groupBy } = require("./utils");
+const { orderByKeys, orderAndGroupByKeys } = require("./utils");
 
 async function fetchArtistsByIDs(artistIDs) {
   const artists = await query(
     sql`select * from artists where id = ANY(${artistIDs})`
   );
 
-  return toMap(artists, artistIDs, (a) => a.id);
+  return orderByKeys(artists, artistIDs, (a) => a.id);
 }
 
 exports.fetchArtistsByIDs = fetchArtistsByIDs;
@@ -16,7 +16,7 @@ async function fetchTracksByAlumIDs(albumIDs) {
     sql`select * from tracks where album_id = ANY(${albumIDs}) ORDER BY index`
   );
 
-  return groupBy(tracks, albumIDs, (t) => t.album_id);
+  return orderAndGroupByKeys(tracks, albumIDs, (t) => t.album_id);
 }
 
 exports.fetchTracksByAlumIDs = fetchTracksByAlumIDs;
