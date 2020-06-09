@@ -1,5 +1,5 @@
-const { query, sql } = require("./database");
-const { onNextTick } = require("./utils");
+const { query, sql } = require("../database");
+const { onNextTick } = require("../utils");
 const {
   fetchArtistsByIDs,
   fetchTracksByAlumIDs,

@@ -1,4 +1,4 @@
-const { query, sql } = require("./database");
+const { query, sql } = require("../database");
 
 exports.resolvers = {
   Query: {

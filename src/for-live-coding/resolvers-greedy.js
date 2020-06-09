@@ -1,5 +1,5 @@
-const { query, sql } = require("./database");
-const { orderByKeys, orderAndGroupByKeys } = require("./utils");
+const { query, sql } = require("../database");
+const { orderByKeys, orderAndGroupByKeys } = require("../utils");
 
 async function fetchArtistsByIDs(artistIDs) {
   const artists = await query(
