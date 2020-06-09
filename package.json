@@ -10,8 +10,8 @@
     "db:seeds": "knex seed:run --esm",
     "start": "node .",
     "dev": "DEBUG=knex:query nodemon",
-    "dev:naive": "RESOLVERS=NAIVE DEBUG=knex:query nodemon",
-    "dev:standalone": "RESOLVERS=STANDALONE DEBUG=knex:query nodemon",
+    "dev:greedy": "RESOLVERS=GREEDY DEBUG=knex:query nodemon",
+    "dev:lazy": "RESOLVERS=LAZY DEBUG=knex:query nodemon",
     "dev:optimized": "RESOLVERS=OPTIMIZED DEBUG=knex:query nodemon"
   },
   "dependencies": {

@@ -1,7 +1,7 @@
 const { ApolloServer } = require("apollo-server");
 
-const { resolvers: resolversNaive } = require("./resolvers-naive");
-const { resolvers: resolversStandalone } = require("./resolvers-standalone");
+const { resolvers: resolversGreedy } = require("./resolvers-greedy");
+const { resolvers: resolversLazy } = require("./resolvers-lazy");
 const {
   resolvers: resolversOptimized,
   context,
@@ -9,10 +9,10 @@ const {
 const { typeDefs } = require("./schema");
 
 const resolvers =
-  process.env.RESOLVERS === "NAIVE"
-    ? resolversNaive
-    : process.env.RESOLVERS === "STANDALONE"
-    ? resolversStandalone
+  process.env.RESOLVERS === "GREEDY"
+    ? resolversGreedy
+    : process.env.RESOLVERS === "LAZY"
+    ? resolversLazy
     : resolversOptimized;
 
 const server = new ApolloServer({

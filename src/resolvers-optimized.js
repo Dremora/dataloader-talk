@@ -3,7 +3,7 @@ const { onNextTick } = require("./utils");
 const {
   fetchArtistsByIDs,
   fetchTracksByAlumIDs,
-} = require("./resolvers-naive");
+} = require("./resolvers-greedy");
 
 const Batch = class {
   constructor(runQuery) {

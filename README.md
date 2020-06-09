@@ -9,13 +9,13 @@
 
 ## Starting the app
 
-Run with naive resolvers:
+Run with greedy resolvers:
 
-    yarn dev:naive
+    yarn dev:greedy
 
-Run with standalone resolvers:
+Run with lazy resolvers:
 
-    yarn dev:standalone
+    yarn dev:lazy
 
 Run with optimized resolvers:
 
