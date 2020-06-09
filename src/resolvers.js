@@ -22,19 +22,23 @@ exports.resolvers = {
     albums: async () => {
       const albums = await query(sql`select * from albums`);
 
-      const artistIDs = albums.map(({ artist_id }) => artist_id);
-      const artistsById = await fetchArtistsByIDs(artistIDs);
-      albums.forEach((album, index) => {
-        album.artist = artistsById[index];
-      });
-
-      const albumIDs = albums.map(({ id }) => id);
-      const tracksByAlbumId = await fetchTracksByAlumIDs(albumIDs);
-      albums.forEach((album, index) => {
-        album.tracks = tracksByAlbumId[index];
-      });
-
       return albums;
+    },
+  },
+
+  Album: {
+    artist: async (album) => {
+      const artists = await query(
+        sql`select * from artists WHERE id = ${album.artist_id}`
+      );
+      return artists[0];
+    },
+
+    tracks: async (album) => {
+      const tracks = await query(
+        sql`select * from tracks WHERE album_id = ${album.id} ORDER BY index`
+      );
+      return tracks;
     },
   },
 };
